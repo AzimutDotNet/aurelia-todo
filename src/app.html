@@ -1,0 +1,34 @@
+<template>
+    <h1>${heading}</h1>
+
+    <form submit.trigger="addTodo()">
+        <input type="text"
+               value.bind="todoDescription">
+        <button type="submit">Add Todo</button>
+    </form>
+    <ul>
+        <li repeat.for="todo of todos">
+            <input type="checkbox"
+                   checked.bind="todo.done">
+            <span css="text-decoration: ${todo.done ? 'line-through': 'none'}">
+                ${todo.description}
+            </span>
+            <button click.trigger="removeTodo(todo)">Remove</button>
+        </li>
+    </ul>
+
+    <div style="border:2px solid gray; display:inline-block">
+        <button style="color:green"
+                click.trigger="save()">Save to LocalStorage</button>
+        <button style="color:red"
+                click.delegate="clear()">Clear Storage</button>
+    </div>
+    <div>
+        <button style="color:blue"
+                click.delegate="saveToSession()">Save to Session</button>
+    </div>
+    <div>
+        <button style="color:yellow"
+                click.delegate="saveToCookie()">Save to cookie</button>
+    </div>
+</template>
